@@ -7,7 +7,7 @@ const CityOptions = ({ cities }) => {
         <>
             <option value="">Vyberte</option>
             {cities.map(city => (
-                <option key={city.code} value={city.name}>
+                <option key={city.code} value={city.code}>
                     {city.name}
                 </option>
             ))}

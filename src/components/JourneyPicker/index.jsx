@@ -9,7 +9,9 @@ export const JourneyPicker = ({ onJourneyChange }) => {
   const [date, setDate] = useState('');
   const [cities, setCities] = useState([]);
   const [dates, setDates] = useState([]);
+  //const [journey, setJourney] = useState(null);
 
+/*
   useEffect(() => {
     const loadData = async () => {
       const response = await fetch(`https://apps.kodim.cz/daweb/leviexpress/api/cities`)
@@ -29,14 +31,25 @@ export const JourneyPicker = ({ onJourneyChange }) => {
     }
     loadData()
   }, []);
+*/
+  /*useEffect(() => {
+    if (onJourneyChange) {
+      setJourney(onJourneyChange);
+    }
+  }, [onJourneyChange]);*/
 
-  /* verze II
   useEffect(() => {
     fetch('https://apps.kodim.cz/daweb/leviexpress/api/cities')
       .then(response => response.json())
       .then(data => setCities(data.results))
   }, []);
-  */
+
+  useEffect(() => {
+    fetch('https://apps.kodim.cz/daweb/leviexpress/api/dates')
+      .then(response => response.json())
+      .then(data => setDates(data.results))
+  }, []);
+
 
   /* 2. Výběr města - 8.
   useEffect(() => {
@@ -49,9 +62,17 @@ export const JourneyPicker = ({ onJourneyChange }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('Odkud:', fromCity);
+
+    fetch(`https://apps.kodim.cz/daweb/leviexpress/api/journey?fromCity=${fromCity}&toCity=${toCity}&date=${date}`)
+      .then(response => response.json())
+      .then(data => {
+        console.log('API response:', data);
+        onJourneyChange(data.results);
+    })
+
+    /*console.log('Odkud:', fromCity);
     console.log('Kam:', toCity);
-    console.log('Datum:', date);
+    console.log('Datum:', date);*/
   };
   
   return (
@@ -81,6 +102,7 @@ export const JourneyPicker = ({ onJourneyChange }) => {
             <button 
               className="btn" 
               type="submit"
+              disabled={!fromCity || !toCity || !date}
             > 
               Vyhledat spoj
             </button>
