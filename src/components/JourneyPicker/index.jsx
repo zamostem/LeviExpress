@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import CityOptions from '../CityOptions/index.jsx';
+import DatesOptions from '../DatesOptions/index.jsx';
 import './style.css';
 
 export const JourneyPicker = ({ onJourneyChange }) => {
@@ -7,6 +8,7 @@ export const JourneyPicker = ({ onJourneyChange }) => {
   const [toCity, setToCity] = useState('');
   const [date, setDate] = useState('');
   const [cities, setCities] = useState([]);
+  const [dates, setDates] = useState([]);
 
   useEffect(() => {
     const loadData = async () => {
@@ -16,7 +18,17 @@ export const JourneyPicker = ({ onJourneyChange }) => {
           setCities(data.results)
     }
     loadData()
-  }, [])
+  }, []);
+
+  useEffect(() => {
+    const loadData = async () => {
+      const response = await fetch(`https://apps.kodim.cz/daweb/leviexpress/api/dates`)
+          const data = await response.json();
+          console.log(data.results)
+          setDates(data.results)
+    }
+    loadData()
+  }, []);
 
   /* verze II
   useEffect(() => {
@@ -62,12 +74,7 @@ export const JourneyPicker = ({ onJourneyChange }) => {
           <label>
             <div className="journey-picker__label">Datum:</div>
             <select value={date} onChange={(e) => setDate(e.target.value)}>
-              <option value="">Vyberte</option>
-              <option value="datum01">Datum 01</option>
-              <option value="datum02">Datum 02</option>
-              <option value="datum03">Datum 03</option>
-              <option value="datum04">Datum 04</option>
-              <option value="datum05">Datum 05</option>
+              <DatesOptions dates={dates} />
             </select>
           </label>
           <div className="journey-picker__controls">
