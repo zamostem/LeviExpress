@@ -5,7 +5,7 @@ export const Seat = ({ number, isOccupied, isSelected }) => {
     return (
         <>
             <svg
-                className={"seat " + (isOccupied ? "seat--occupied" : "")}
+                className={"seat " + (isOccupied ? "seat--occupied " : "") + (isSelected ? "seat--selected " : "")}
                 viewBox="0 0 100 100"
                 role="button"
             >
