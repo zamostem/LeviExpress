@@ -15,7 +15,7 @@ export const ReservationPage = () => {
       }
 
       const data = await response.json();
-      console.log('Data získaná z endpointu:', data);
+      console.log('Reservation:', data);
       setReservation(data.results)
     };
     fetchReservation();
