@@ -32,6 +32,10 @@ export const HomePage = () => {
     const data = await response.json()
     const reservation = data.results.reservationId;
     console.log('reservationId:', reservation);
+
+    /*const data = await response.json()
+    const reservation = data.results;
+    console.log('reservationId:', reservation);*/
     
     navigate(`/reservation/${reservation}`);
     

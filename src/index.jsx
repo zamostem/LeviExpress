@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, RouterProvider, Link } from 'react-router-dom';
 import { App } from './components/App';
 import { HomePage } from './pages/HomePage/index.jsx';
-import { ReservationPage } from './components/ReservationPage/index.jsx';
+import { ReservationPage } from './pages/ReservationPage/index.jsx';
 import './global.css';
 
 const router = createBrowserRouter([
@@ -16,7 +16,7 @@ const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: '/reservation',
+        path: '/reservation/:id',
         element: <ReservationPage />,
       },
     ]

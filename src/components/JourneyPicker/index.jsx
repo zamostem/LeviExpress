@@ -70,6 +70,18 @@ export const JourneyPicker = ({ onJourneyChange }) => {
         onJourneyChange(data.results);
     })
 
+    /*useEffect(() => {
+    const loadData = async () => {
+
+      const [mesic, den] = date.split("-");
+        const response = await fetch(`https://nameday.abalin.net/api/V1/today/getdate?day=${den}month=${mesic}`)
+        const data = await response.json();
+        console.log(data)
+        setName(data.nameday.cz)
+    }
+    loadData()
+  }, [date])
+  */
     /*console.log('Odkud:', fromCity);
     console.log('Kam:', toCity);
     console.log('Datum:', date);*/
