@@ -1,13 +1,14 @@
 import React from 'react';
 import "./style.css";
 
-export const Seat = ({ number, isOccupied, isSelected }) => {
+export const Seat = ({ number, isOccupied, isSelected, onSelect }) => {
     return (
         <>
             <svg
                 className={"seat " + (isOccupied ? "seat--occupied " : "") + (isSelected ? "seat--selected " : "")}
                 viewBox="0 0 100 100"
                 role="button"
+                onClick={() => onSelect(number)}
             >
                 <rect
                     className="seat__rect"

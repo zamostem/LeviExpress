@@ -8,11 +8,13 @@ import { SeatPicker } from '../../components/SeatPicker/index.jsx';
 
 export const HomePage = () => {
   const [journey, setJourney] = useState(null);
+  const [userSeat, setUserSeat] = useState(null);
   const navigate = useNavigate();
 
-  const handleJourneyChange = (journey) => {
-    console.log('Cesta:', journey)
-    setJourney(journey);
+  const handleJourneyChange = (selectedJourney) => {
+    console.log('Journey:', journey)
+    setJourney(selectedJourney);
+    setUserSeat(selectedJourney.autoSeat)
   };
 
   const handleBuy = async () => {
@@ -25,14 +27,14 @@ export const HomePage = () => {
       },
       body: JSON.stringify({
         action: 'create',
-        seat: journey.autoSeat,
+        seat: userSeat,
         journeyId: journey.journeyId,
       }),
     })
 
     const data = await response.json()
     const reservation = data.results.reservationId;
-    console.log('reservationId:', reservation);
+    console.log('ReservationId:', reservation);
 
     /*const data = await response.json()
     const reservation = data.results;
@@ -48,7 +50,7 @@ export const HomePage = () => {
       {journey && (
         <>
           <JourneyDetail journey={journey}/>
-          <SeatPicker seats={journey.seats} journeyId={journey.journeyId} selectedSeat={journey.autoSeat} />
+          <SeatPicker seats={journey.seats} journeyId={journey.journeyId} selectedSeat={userSeat} onSeatSelected={setUserSeat} />
           <div className="controls container">
             <button className="btn btn--big" type="button" onClick={handleBuy}>
               Rezervovat

@@ -2,7 +2,7 @@ import React from 'react';
 import "./style.css";
 import { SeatRow } from '../SeatRow/index.jsx';
 
-export const SeatPicker = ({ seats, journeyId, selectedSeat }) => {
+export const SeatPicker = ({ seats, journeyId, selectedSeat, onSeatSelected }) => {
     console.log('Data pro sedadla:', seats);
 
     return (
@@ -14,7 +14,7 @@ export const SeatPicker = ({ seats, journeyId, selectedSeat }) => {
             <Seat number={17} />
             <Seat number={33} />*/}
             {seats.map((row, index) => (
-                <SeatRow key={index} row={row} rowSelectedSeat={selectedSeat} />
+                <SeatRow key={index} row={row} rowSelectedSeat={selectedSeat} onSeatSelected={onSeatSelected}/>
             ))}
         </div>
       </div>  
