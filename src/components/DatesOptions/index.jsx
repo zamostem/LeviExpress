@@ -1,6 +1,6 @@
 import React from 'react';
 
-const DatesOptions = ({ dates }) => {
+export const DatesOptions = ({ dates }) => {
   return (
     <>
       <option value="">Vyberte</option>
@@ -10,5 +10,3 @@ const DatesOptions = ({ dates }) => {
     </>
   );
 };
-
-export default DatesOptions;

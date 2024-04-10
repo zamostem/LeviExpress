@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import CityOptions from '../CityOptions/index.jsx';
-import DatesOptions from '../DatesOptions/index.jsx';
+import { CityOptions } from '../CityOptions/index.jsx';
+import { DatesOptions } from '../DatesOptions/index.jsx';
 import './style.css';
 
 export const JourneyPicker = ({ onJourneyChange }) => {
@@ -9,35 +9,29 @@ export const JourneyPicker = ({ onJourneyChange }) => {
   const [date, setDate] = useState('');
   const [cities, setCities] = useState([]);
   const [dates, setDates] = useState([]);
-  //const [journey, setJourney] = useState(null);
 
-/*
+
   useEffect(() => {
-    const loadData = async () => {
+    const fetchCities = async () => {
       const response = await fetch(`https://apps.kodim.cz/daweb/leviexpress/api/cities`)
           const data = await response.json();
           console.log(data.results)
           setCities(data.results)
     }
-    loadData()
+    fetchCities()
   }, []);
 
   useEffect(() => {
-    const loadData = async () => {
+    const fetchDates = async () => {
       const response = await fetch(`https://apps.kodim.cz/daweb/leviexpress/api/dates`)
           const data = await response.json();
           console.log(data.results)
           setDates(data.results)
     }
-    loadData()
+    fetchDates()
   }, []);
-*/
-  /*useEffect(() => {
-    if (onJourneyChange) {
-      setJourney(onJourneyChange);
-    }
-  }, [onJourneyChange]);*/
 
+/* - zkouška
   useEffect(() => {
     fetch('https://apps.kodim.cz/daweb/leviexpress/api/cities')
       .then(response => response.json())
@@ -49,42 +43,18 @@ export const JourneyPicker = ({ onJourneyChange }) => {
       .then(response => response.json())
       .then(data => setDates(data.results))
   }, []);
+*/
 
-
-  /* 2. Výběr města - 8.
-  useEffect(() => {
-    setCities([
-      { name: 'Praha', code: 'CZ-PRG' },
-      { name: 'Brno', code: 'CZ-BRQ' },
-    ]);
-  }, []);
-  */
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
+    
     fetch(`https://apps.kodim.cz/daweb/leviexpress/api/journey?fromCity=${fromCity}&toCity=${toCity}&date=${date}`)
       .then(response => response.json())
       .then(data => {
         console.log('API response:', data);
         onJourneyChange(data.results);
     })
-
-    /*useEffect(() => {
-    const loadData = async () => {
-
-      const [mesic, den] = date.split("-");
-        const response = await fetch(`https://nameday.abalin.net/api/V1/today/getdate?day=${den}month=${mesic}`)
-        const data = await response.json();
-        console.log(data)
-        setName(data.nameday.cz)
-    }
-    loadData()
-  }, [date])
-  */
-    /*console.log('Odkud:', fromCity);
-    console.log('Kam:', toCity);
-    console.log('Datum:', date);*/
   };
   
   return (

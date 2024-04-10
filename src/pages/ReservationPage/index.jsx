@@ -7,7 +7,7 @@ export const ReservationPage = () => {
   let { id } = useParams();
 
   useEffect(() => {
-    const loadData = async () => {
+    const fetchReservation = async () => {
       const response = await fetch(`https://apps.kodim.cz/daweb/leviexpress/api/reservation?id=${id}`);
 
       if (!response.ok) {
@@ -18,7 +18,7 @@ export const ReservationPage = () => {
       console.log('Data získaná z endpointu:', data);
       setReservation(data.results)
     };
-    loadData();
+    fetchReservation();
   }, [])
   
 

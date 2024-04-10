@@ -1,5 +1,4 @@
 import React from 'react';
-import "./style.css";
 import { Seat } from '../Seat/index.jsx';
 
 export const SeatRow = ({ row, rowSelectedSeat, onSeatSelected }) => {

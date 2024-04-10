@@ -1,9 +1,9 @@
 import React from 'react';
 import './style.css';
-import BusStop from '../BusStop';
+import { BusStop } from '../BusStop';
 
 export const JourneyDetail = ({ journey }) => {
-    console.log('Cesta:', journey);
+    console.log('Journey:', journey);
 
     return (
         <div className="journey-detail container">
@@ -21,5 +21,3 @@ export const JourneyDetail = ({ journey }) => {
         </div>
     );
 };
-
-export default JourneyDetail;

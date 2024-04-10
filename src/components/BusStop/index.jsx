@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.css';
 
-const BusStop = ({ name, station, time }) => {
+export const BusStop = ({ name, station, time }) => {
   return (
     <div className="bus-stop">
         <div className="bus-stop__bullet"></div>
@@ -13,5 +13,3 @@ const BusStop = ({ name, station, time }) => {
     </div>
   );
 };
-
-export default BusStop;

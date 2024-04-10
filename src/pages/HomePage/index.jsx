@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import './style.css';
 import { JourneyPicker } from '../../components/JourneyPicker';
 import { JourneyDetail } from '../../components/JourneyDetail/index.jsx';
 import { SeatPicker } from '../../components/SeatPicker/index.jsx';
+import './style.css';
 
 
 export const HomePage = () => {
@@ -12,13 +12,12 @@ export const HomePage = () => {
   const navigate = useNavigate();
 
   const handleJourneyChange = (selectedJourney) => {
-    console.log('Journey:', journey)
     setJourney(selectedJourney);
     setUserSeat(selectedJourney.autoSeat)
   };
 
   const handleBuy = async () => {
-    console.log('Funguju!')
+    // console.log('Funguju!')
     
     const response = await fetch('https://apps.kodim.cz/daweb/leviexpress/api/reservation', {
       method: 'POST',
@@ -35,10 +34,6 @@ export const HomePage = () => {
     const data = await response.json()
     const reservation = data.results.reservationId;
     console.log('ReservationId:', reservation);
-
-    /*const data = await response.json()
-    const reservation = data.results;
-    console.log('reservationId:', reservation);*/
     
     navigate(`/reservation/${reservation}`);
     

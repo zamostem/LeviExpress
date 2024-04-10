@@ -1,7 +1,7 @@
 import React from 'react';
 
-const CityOptions = ({ cities }) => {
-    // console.log('Seznam měst:', cities);
+export const CityOptions = ({ cities }) => {
+    // console.log('Cities:', cities);
 
     return (
         <>
@@ -15,4 +15,3 @@ const CityOptions = ({ cities }) => {
     );
 };
 
-export default CityOptions;
